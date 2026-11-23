@@ -277,3 +277,24 @@ footer{padding:52px 0 32px}
 footer{padding-top:44px;padding-bottom:104px}
 .foot{margin-bottom:28px;gap:28px}
 }
+
+/* newest work row */
+.work-top{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+.work-top .cut{margin:0;aspect-ratio:3/4}
+.work-top .cut img{height:100%;object-fit:cover;object-position:center 35%}
+@media (max-width:880px){.work-top{gap:10px;margin-bottom:10px}}
+
+/* phone-booking barber card */
+.barbers{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.card-phone:hover{transform:none;box-shadow:none}
+.card-phone .book{display:flex;gap:10px}
+.card-phone .book a{flex:1;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:3px;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.1em;font-size:15px;text-decoration:none;transition:transform .18s ease}
+.card-phone .call-btn{background:var(--accent);color:#fff}.card-phone .call-btn:hover{color:#fff;transform:translateY(-2px)}
+.card-phone .text-btn{background:var(--navy);color:#fff}.card-phone .text-btn:hover{color:#fff;transform:translateY(-2px)}
+@media (min-width:881px){
+.barbers .card-body{padding:24px 22px 24px}
+.barbers .card-name{font-size:24px}
+.barbers .book span,.card-phone .book a{padding:14px 14px;font-size:14px;letter-spacing:.08em;white-space:nowrap}
+}
+
+.card-phone-num{margin:-4px 0 4px}.card-phone-num a{font-family:'Oswald',sans-serif;font-weight:600;font-size:22px;letter-spacing:.04em;color:var(--accent);text-decoration:none}.card-phone-num a:hover{color:var(--accent-dark)}
