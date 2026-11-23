@@ -20,12 +20,14 @@
     mins = (parseInt(get('hour'), 10) % 24) * 60 + parseInt(get('minute'), 10);
   } catch (e) { var d = new Date(); day = d.getDay(); mins = d.getHours() * 60 + d.getMinutes(); }
   var openDay = day >= 1 && day <= 6;
-  var isOpen = openDay && mins >= 480 && mins < 1080;
-  var detail = isOpen ? 'until 6:00 PM today'
-    : (openDay && mins < 480) ? 'opens today at 8:00 AM'
-    : (day === 6 || day === 0) ? 'opens Monday at 8:00 AM'
-    : 'opens tomorrow at 8:00 AM';
-  document.querySelectorAll('.js-status').forEach(function (el) { el.textContent = isOpen ? 'Open now' : 'Closed now'; });
+  var isOpen = openDay && mins >= 600 && mins < 1140;
+  var detail = isOpen ? 'until 7:00 PM today'
+    : (openDay && mins < 600) ? 'opens today at 10:00 AM'
+    : (day === 0) ? 'opens Monday at 10:00 AM'
+    : (day === 6) ? 'Sunday by appointment only'
+    : 'opens tomorrow at 10:00 AM';
+  var status = isOpen ? 'Open now' : (day === 0 ? 'By appointment today' : 'Closed now');
+  document.querySelectorAll('.js-status').forEach(function (el) { el.textContent = status; });
   document.querySelectorAll('.js-detail').forEach(function (el) { el.textContent = detail; });
   document.querySelectorAll('.js-dot').forEach(function (el) { el.classList.toggle('open', isOpen); });
   var row = document.querySelector('#hours li[data-day="' + day + '"]');
@@ -33,7 +35,7 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 })();
 
-(function(){var g=document.querySelectorAll('#work-grid .cut'),lb=document.getElementById('lb'),im=lb.querySelector('img'),i=0,last;
+(function(){var g=document.querySelectorAll('.work-top .cut, #work-grid .cut'),lb=document.getElementById('lb'),im=lb.querySelector('img'),i=0,last;
 function show(n){i=(n+g.length)%g.length;var s=g[i].querySelector('img');im.src=s.src;im.alt=s.alt}
 function open(n){last=document.activeElement;show(n);lb.classList.add('on');document.body.style.overflow='hidden';lb.querySelector('.x').focus()}
 function close(){lb.classList.remove('on');document.body.style.overflow='';if(last)last.focus()}
