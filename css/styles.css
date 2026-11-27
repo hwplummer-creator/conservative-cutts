@@ -303,6 +303,18 @@ footer{padding-top:44px;padding-bottom:104px}
 
 .card-phone-num{margin:-4px 0 4px}.card-phone-num a{font-family:'Oswald',sans-serif;font-weight:600;font-size:22px;letter-spacing:.04em;color:var(--accent);text-decoration:none}.card-phone-num a:hover{color:var(--accent-dark)}
 
+/* The Shop: Facebook box on its own (no repeated photo) */
+.gallery .side{flex-basis:100%}
+.gallery .fb{min-height:0}
+@media (min-width:881px){.gallery .fb{flex-direction:row;align-items:center;justify-content:space-between;gap:40px;padding:34px 40px}.gallery .fb a{white-space:nowrap}}
+
+/* Visit: solid navy map card (no repeated photo) */
+.map{background:var(--navy);min-height:300px;transition:transform .2s ease,box-shadow .2s ease}
+.map:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(15,27,45,.22)}
+.map::before{inset:0 0 auto 0;height:6px;background:var(--pole)}
+.map div{margin:auto 0;align-items:flex-start}
+@media (max-width:880px){.map{min-height:220px}}
+
 /* section transitions: barber-pole stripe where cream meets navy */
 .sec.dark{position:relative}
 .sec.dark::before,.sec.dark::after{content:"";position:absolute;left:0;right:0;height:6px;background:var(--pole)}
