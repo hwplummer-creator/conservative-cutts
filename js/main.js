@@ -46,3 +46,31 @@ document.addEventListener('keydown',function(e){if(!lb.classList.contains('on'))
 var x0=null;lb.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
 lb.addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>40)show(i+(d<0?1:-1));x0=null});
 })();
+
+// Section transitions: fade content up as it scrolls into view
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var groups = ['.sec .head', '.shop-head', '.menu', '.barbers > *', '.gallery', '.features > div', '.work-top .cut', '#work-grid .cut', '.reviews .review', '.visit-info', '.map', '.closing .wrap'];
+  var items = [];
+  groups.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el, n) {
+      el.classList.add('reveal');
+      el.dataset.delay = (n % 4) * 90;
+      items.push(el);
+    });
+  });
+  var brows = document.querySelectorAll('.eyebrow');
+  document.documentElement.classList.add('js-reveal');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target, d = +(el.dataset.delay || 0);
+      if (d) { el.style.transitionDelay = d + 'ms'; setTimeout(function () { el.style.transitionDelay = ''; }, d + 800); }
+      el.classList.add('in');
+      io.unobserve(el);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+  items.forEach(function (el) { io.observe(el); });
+  brows.forEach(function (el) { io.observe(el); });
+})();
