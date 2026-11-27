@@ -48,6 +48,15 @@ var x0=null;lb.addEventListener('touchstart',function(e){x0=e.touches[0].clientX
 lb.addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>40)show(i+(d<0?1:-1));x0=null});
 })();
 
+// Directions: open Apple Maps on iPhone, iPad and Mac; Google Maps everywhere else
+(function () {
+  var ua = navigator.userAgent || '';
+  var apple = /iPhone|iPad|iPod|Macintosh/.test(ua);
+  if (!apple) return;
+  var url = 'https://maps.apple.com/?daddr=16188+Country+Club+Dr,+Dumfries,+VA+22025&dirflg=d';
+  document.querySelectorAll('a[href*="google.com/maps/dir"]').forEach(function (a) { a.href = url; });
+})();
+
 // Section transitions: fade content up as it scrolls into view
 (function () {
   if (!('IntersectionObserver' in window)) return;
