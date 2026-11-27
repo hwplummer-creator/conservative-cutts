@@ -315,6 +315,19 @@ footer{padding-top:44px;padding-bottom:104px}
 .map div{margin:auto 0;align-items:flex-start}
 @media (max-width:880px){.map{min-height:220px}}
 
+/* Visit: live Google map */
+.map{flex-direction:column;min-height:440px;border:1px solid var(--line)}
+.map:hover{transform:none;box-shadow:none}
+.map::before{z-index:2}
+.map iframe{flex:1;width:100%;min-height:320px;border:0;display:block;background:#E8E4DC}
+.map-link{display:flex;align-items:center;gap:14px;padding:18px 22px;background:var(--navy);text-decoration:none;color:var(--cream)}
+.map-link:hover{background:#16273F;color:var(--cream)}
+.map-link svg{width:28px;height:28px;flex:none}
+.map-text{display:flex;flex-direction:column;gap:2px}
+.map .map-text strong{font-family:'Oswald',sans-serif;font-size:22px;font-weight:600;text-transform:uppercase;color:var(--gold)}
+.map-text small{font-size:14.5px;color:#E6DAC4}
+@media (max-width:880px){.map{min-height:0}.map iframe{min-height:280px}}
+
 /* section transitions: barber-pole stripe where cream meets navy */
 .sec.dark{position:relative}
 .sec.dark::before,.sec.dark::after{content:"";position:absolute;left:0;right:0;height:6px;background:var(--pole)}
