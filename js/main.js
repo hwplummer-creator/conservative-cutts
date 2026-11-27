@@ -36,13 +36,14 @@
 })();
 
 (function(){var g=document.querySelectorAll('.work-top .cut, #work-grid .cut'),lb=document.getElementById('lb'),im=lb.querySelector('img'),i=0,last;
-function show(n){i=(n+g.length)%g.length;var s=g[i].querySelector('img');im.src=s.src;im.alt=s.alt}
+var st=document.createElement('span');st.setAttribute('aria-live','polite');st.style.cssText='position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap';lb.appendChild(st);
+function show(n){i=(n+g.length)%g.length;var s=g[i].querySelector('img');im.src=s.src;im.alt=s.alt;st.textContent='Photo '+(i+1)+' of '+g.length+': '+s.alt}
 function open(n){last=document.activeElement;show(n);lb.classList.add('on');document.body.style.overflow='hidden';lb.querySelector('.x').focus()}
 function close(){lb.classList.remove('on');document.body.style.overflow='';if(last)last.focus()}
 g.forEach(function(b,n){b.addEventListener('click',function(){open(n)})});
 lb.querySelector('.x').onclick=close;lb.querySelector('.pv').onclick=function(){show(i-1)};lb.querySelector('.nx').onclick=function(){show(i+1)};
 lb.addEventListener('click',function(e){if(e.target===lb)close()});
-document.addEventListener('keydown',function(e){if(!lb.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)});
+document.addEventListener('keydown',function(e){if(!lb.classList.contains('on'))return;if(e.key==='Tab'){var f=lb.querySelectorAll('button'),a=f[0],z=f[f.length-1];if(!lb.contains(document.activeElement)){e.preventDefault();a.focus()}else if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)});
 var x0=null;lb.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
 lb.addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>40)show(i+(d<0?1:-1));x0=null});
 })();
